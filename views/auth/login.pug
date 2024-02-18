@@ -1,0 +1,24 @@
+extends ../layout/Principal 
+
+block Contenido
+  div(class="py-10")
+   h1(class="text-6xl my-10 font-extrabold text-center") Bienes
+    span(class="font-normal bg-") Raices
+   h2(class="text-center text-3xl font-extrabold") #{namePage} 
+   div(class="mt-8 mx-auto max-w-md bg-white")
+      div(class="bg-whte py-8 px-4 shadow")
+        form 
+          div 
+            label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="Email") Your Email:
+             input(class=" rounded-md placeholder-grey-400 inline-block mt-1 w-full px-4 py-2 border border-grey-300" id="Email" name="Email" type="email" placeholder="Email" required)
+
+          div 
+            label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="Password") Your Password:
+             input(class=" rounded-md placeholder-grey-400 inline-block mt-1 w-full px-4 py-2 border border-grey-300" id="Password" name="Password" type="password" placeholder="Password" required)
+
+          div(class="flex align-center justify-between mt-3")
+            a(class="text-gray-500 text-sm hover:text-gray-700" href="register") No tienes cuenta? Registrate!
+            a(class="text-gray-500 text-sm hover:text-gray-700" href="password") Olvidaste tu contraseña?
+
+          div 
+          input(type="submit" value="Sign Up" class="font-bold hover:bg-green-700 rounded-md w-full cursor-pointer h-10 bg-green-400 text-white mt-3")

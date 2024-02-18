@@ -1,0 +1,37 @@
+extends ../layout/Principal 
+
+block Contenido
+  div(class="py-10")
+   h1(class="text-6xl my-10 font-extrabold text-center") Bienes
+    span(class="font-normal bg-") Raices
+   h2(class="text-center text-3xl font-extrabold") #{namePage} 
+    if listError 
+      div(class="mt-10 mb-5 max-w-md mx-auto")
+        each error in listError 
+          div(class="bg-red-700 mt-10 rounded")
+            p(class="p-4 text-white font-bold text-nowrap text-xs") #{error.msg} 
+
+   div(class="mt-8 mx-auto max-w-md bg-white")
+      div(class="bg-whte py-8 px-4 shadow")
+        form(method="POST" action="/auth/register")
+          div 
+            label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="Name") Your Name:
+             input(class="rounded-md placeholder-grey-400 inline-block mt-1 w-full font-light px-4 py-2 border border-grey-300" id="Name" name="nombre" type="text" value= usuario ? usuario.nombre :"")
+
+          div 
+            label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="Email") Your Email:
+             input(class=" rounded-md placeholder-grey-400 inline-block mt-1 w-full px-4 py-2 border border-grey-300" id="email" name="email" type="email" value= usuario ? usuario.email :"")
+
+          div 
+            label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="Password") Your Password:
+             input(class=" rounded-md placeholder-grey-400 inline-block mt-1 w-full px-4 py-2 border border-grey-300" id="password" name="password" type="password")
+
+          div 
+            label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="Password") Repeat Password:
+             input(class=" rounded-md placeholder-grey-400 inline-block mt-1 w-full px-4 py-2 border border-grey-300" id="password" name="repeatpassword" type="password")
+
+          div(class="flex align-center justify-between mt-3")
+            a(class="text-gray-500 text-sm hover:text-gray-700" href="login") ya tienes cuenta? Sing In
+            a(class="text-gray-500 text-sm hover:text-gray-700" href="password") Olvidaste tu contraseña?
+          div 
+          input(type="submit" value="Sign In" class="font-bold hover:bg-green-700 rounded-md w-full cursor-pointer h-10 bg-green-400 text-white mt-3")

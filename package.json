@@ -1,0 +1,43 @@
+{
+  "name": "real-estate-page",
+  "version": "1.0.0",
+  "description": "Pagina web para la venta de vienes raices",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon ./index.js",
+    "css": "postcss public/css/tailwind.css -o public/css/app.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rdesing1/real-estate-page.git"
+  },
+  "keywords": [
+    "MVC",
+    "node.js",
+    "tailwind.css",
+    "sequelize"
+  ],
+  "author": "kevin rojas | r.desing4000@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rdesing1/real-estate-page/issues"
+  },
+  "homepage": "https://github.com/Rdesing1/real-estate-page#readme",
+  "dependencies": {
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "mysql2": "^3.9.1",
+    "pug": "^3.0.2",
+    "sequelize": "^6.35.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "nodemon": "^3.0.2",
+    "postcss": "^8.4.33",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^3.4.1"
+  }
+}
