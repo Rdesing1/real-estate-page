@@ -1,5 +1,6 @@
 import Conection from "../config/BBDD.js";
-import {DataTypes } from "sequelize";
+import bcrypt from "bcrypt"
+import { DataTypes } from "sequelize";
 
 const Usuario = Conection.define("users",{
     nombre:{
@@ -19,6 +20,13 @@ const Usuario = Conection.define("users",{
 
     token: DataTypes.TEXT
     
+},{
+    hooks:{
+        beforeCreate: async function(usuario) {
+            const salt = await bcrypt.genSalt(10);
+            usuario.password = await bcrypt.hash(usuario.password,salt);
+        }
+    }
 });
 
 

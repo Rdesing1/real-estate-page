@@ -58,13 +58,14 @@ async function RegistrarUsuario(req,res){
             
     }
 
-    const usuario = await Usuario.create({
+    await Usuario.create({
         nombre:req.body.nombre,
         email:req.body.email,
         password:req.body.password,
         token:NewToken()
     });
     
+    res.render('')
 }   
 
 
