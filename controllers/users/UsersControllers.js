@@ -1,5 +1,7 @@
 import { check, validationResult } from "express-validator";
+import { NewToken } from "../../helpers/token.js";
 import Usuario from "../../models/Usuarios.js";
+import { where } from "sequelize";
 
 
 function ForlumarioLogin(req,res){
@@ -23,53 +25,49 @@ async function RegistrarUsuario(req,res){
 
 
     let resultValidation = await validationResult(req);
-    
+
     if(resultValidation.isEmpty() == false){
-        return res.render('auth/register.pug',{
+        res.render('auth/register.pug',{
             namePage:'Registro',
             usuario:{
                 nombre:req.body.nombre,
-                email:req.body.email,
-            },
-
-            listError: resultValidation.array()
-        });
-
-    }else{
-        validarEmailUsuario(req,res);
-        const usuario = await Usuario.create({
-            nombre:req.body.nombre,
-            email:req.body.email,
-            password:req.body.password
-    
-        });
+                    email:req.body.email,
+                },
         
+                listError: resultValidation.array()
+            });
+            
     }
-    
 
+    const existeUsuario = await Usuario.findOne({
+        where:{
+            email:req.body.email
+        }
+    });
 
-   
-}
-
-let validarEmailUsuario = async (req,res)=>{
-    let {email} = req.body;
-    let result = await Usuario.findOne({email: email});
-
-    if(result){
-        return res.render('auth/register.pug',{
+    if(existeUsuario){
+       return res.render('auth/register.pug',{
             namePage:'Registro',
             usuario:{
                 nombre:req.body.nombre,
-                email:req.body.email,
-            },
-
-            listError: [
-                {msg:"El usuario ya existe"}
-            ]
+                    email:req.body.email,
+                },
+        
+                listError: [{msg:"El usuario ya se encuentra registrado."}]
         });
+            
     }
 
-}
+    const usuario = await Usuario.create({
+        nombre:req.body.nombre,
+        email:req.body.email,
+        password:req.body.password,
+        token:NewToken()
+    });
+    
+}   
+
+
 
 function OlvidePassword(req,res){
     res.render('auth/OlvidePassword.pug',{
